@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Title;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $boards = Title::all();
+        $cards = DB::table('titles')
+            ->join('cards','titles.id',"=",'cards.table_id')
+            ->where('cards.table_id', 50)
+            // // ->select('cards.*','titles.*')
+            ->get();
+        // dd($cards) ;
+        return view('tasks.overview', compact('boards','cards'));
     }
 }
