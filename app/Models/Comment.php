@@ -17,7 +17,7 @@ class Comment extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class, 'id');
-        // return $this->belongsToMany(Card::class)
+        return $this->belongsTo(User::class, 'id_user');
     }
+    
 }

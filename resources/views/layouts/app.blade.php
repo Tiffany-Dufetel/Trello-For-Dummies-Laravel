@@ -79,7 +79,6 @@
         </main>
 
         <footer>&copy; 2021, Trello for dummies</footer>
-        <script type="text/javascript" src="{{asset('script.js')}}"></script>
 
 </body>
 </html>

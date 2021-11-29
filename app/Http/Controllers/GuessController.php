@@ -10,9 +10,11 @@ class GuessController extends Controller
 {
     public function store(Request $request, $id)
     {
-
         $validated = $request->validate([
-            'guess' => 'required|string',
+            'guess' => 'required|email|exists:users,email',
+        ], [
+            'guess.required' => "Oops, the field is empty.",
+            'guess.exists' => "The guess you're trying to invite doesn't have an account.",
         ]);
 
         $guess = [

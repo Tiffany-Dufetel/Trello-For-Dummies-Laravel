@@ -28,28 +28,22 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user_id = Auth::user()->id;
-        $name = Auth::user()->name;
-        $email = Auth::user()->email;
+        $user_id = Auth::user()->id; //récupération de l'id de l'utilisateur connecté
+        $name = Auth::user()->name; //récupération du nom de l'utilisateur connecté
+        $email = Auth::user()->email; //récupération du mail de l'utilisateur connecté
 
-        $boards = Title::with('user')
-            ->where([['user_id', $user_id]])
+        $boards = Title::with('user') // requete de la table title et user en relation
+            ->where('user_id', $user_id)
             ->orderByDesc('created_at')
             ->get();
-        // dd($users);
 
-        $boardsGuess = Guess::with('board')
+        $boardsGuess = Guess::with('board.user') //requete de la table guess en relation avec la table title et user
             ->where('guess', $email)
             ->get();
 
-        // dd($boardsGuess);
-
-
-        $cards = Card::with('board')
+        $cards = Card::with('board') //requete de la table card en relation avec la table title
             ->get();
 
         return view('tasks.overview', compact('boards', 'cards', 'name', 'user_id', 'boardsGuess'));
     }
-
-    
 }

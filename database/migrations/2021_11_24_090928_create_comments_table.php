@@ -17,8 +17,16 @@ class CreateCommentsTable extends Migration
             $table->id();
             $table->string('content');
             $table->integer('id_user');
-            $table->integer('id_card');
+
+            $table->unsignedBigInteger('id_card');
             $table->timestamps();
+
+
+            $table->foreign('id_card')
+                ->constrained()
+                ->references('id')
+                ->on('cards')
+                ->onDelete('cascade');
         });
     }
 

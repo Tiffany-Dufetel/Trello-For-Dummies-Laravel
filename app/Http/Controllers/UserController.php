@@ -22,11 +22,12 @@ class UserController extends Controller
 
     public function index()
     {
-        $user_id = Auth::user()->id;
-        $user = User::find($user_id);
-        $email = Auth::user()->email;
+        $user_id = Auth::user()->id; //récupération de l'id de l'utilisateur connecté
+        $email = Auth::user()->email; //récupération du mail de l'utilisateur connecté
 
-        $boardsGuess = Guess::with('board')
+        $user = User::find($user_id);
+
+        $boardsGuess = Guess::with('board') //requete du tableau guess en relation avec board
             ->where('user_id', $user_id)
             ->get();
 
@@ -41,8 +42,7 @@ class UserController extends Controller
             'password' => 'required|min:8',
         ]);
 
-
-        $auth = Auth::user()->id;
+        $auth = Auth::user()->id; //récupération de l'id de l'utilisateur connecté
 
         $board = User::find($auth);
         $board->name = $request->name;

@@ -49,6 +49,11 @@ class User extends Authenticatable
 
     public function comment()
     {
-        return $this->belongsToMany(Comment::class);
+        return $this->hasMany(Comment::class);
+    }
+
+    public function card()
+    {
+        return $this->hasMany(Card::class);
     }
 }

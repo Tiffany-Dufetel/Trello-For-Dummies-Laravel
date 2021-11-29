@@ -25,8 +25,7 @@ class TaskController extends Controller
 
     public function store(Request $request, $id)
     {
-        $user = Auth::user();
-        $user_id = $user->id;
+        $user_id = Auth::user()->id;
 
         $validated = $request->validate([
             'title' => 'required|string',
@@ -48,16 +47,13 @@ class TaskController extends Controller
 
     public function edit($id)
     {
-        // $post = Post::find($id);
-        // dd($post);
         return view('tasks.edit');
     }
 
 
     public function update(Request $request, $id)
     {
-        $user = Auth::user();
-        $user_id = $user->id;
+        $user_id = Auth::user()->id;
 
         $board = Card::find($id);
         $board->card_title = $request->edit_card_title;

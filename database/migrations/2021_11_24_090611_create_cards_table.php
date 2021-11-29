@@ -18,7 +18,6 @@ class CreateCardsTable extends Migration
             $table->string('card_title');
             $table->string('content');
 
-            // $table->bigInteger('table_id');
             $table->unsignedBigInteger('table_id');
 
             $table->bigInteger('user_id');

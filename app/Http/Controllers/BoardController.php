@@ -6,6 +6,7 @@ use App\Models\Card;
 use App\Models\Comment;
 use App\Models\Guess;
 use App\Models\Title;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -29,24 +30,20 @@ class BoardController extends Controller
      */
     public function index()
     {
-        $user_id = Auth::user()->id;
-        $name = Auth::user()->name;
-        $email = Auth::user()->email;
+        $user_id = Auth::user()->id; //récupération de l'id de l'utilisateur connecté
+        $name = Auth::user()->name; //récupération du nom de l'utilisateur connecté
+        $email = Auth::user()->email; //récupération du mail de l'utilisateur connecté
 
-        $boards = Title::with('user')
-            ->where([['user_id', $user_id]])
+        $boards = Title::with('user') // requete de la table title et user en relation
+            ->where('user_id', $user_id)
             ->orderByDesc('created_at')
             ->get();
-        // dd($users);
 
-        $boardsGuess = Guess::with('board')
+        $boardsGuess = Guess::with('board.user') //requete de la table guess en relation avec la table title et user
             ->where('guess', $email)
             ->get();
 
-        // dd($boardsGuess);
-
-
-        $cards = Card::with('board')
+        $cards = Card::with('board') //requete de la table card en relation avec la table title
             ->get();
 
         return view('tasks.overview', compact('boards', 'cards', 'name', 'user_id', 'boardsGuess'));
@@ -70,11 +67,12 @@ class BoardController extends Controller
      */
     public function store(Request $request)
     {
-        $user = Auth::user();
-        $user_id = $user->id;
+        $user_id = Auth::user()->id; //récupération de l'id de l'utilisateur connecté
 
         $validated = $request->validate([
             'title' => 'required|string',
+        ], [
+            'title.required' => "Oops, you're trying to create a board without a title."
         ]);
 
         $title = [
@@ -96,30 +94,23 @@ class BoardController extends Controller
      */
     public function show($id)
     {
+        $user_id = Auth::user()->id; //récupération de l'id de l'utilisateur connecté
 
-        $auth = Auth::user();
-        $user_id = $auth->id;
+        $board = Title::find($id); //récupération des tableaux correspondant a l'id
 
-        $board = Title::find($id);
+        $boardUser = Title::with('user') //requete de la table title en relation avec user
+            ->where('id', $id)
+            ->get();
 
-        // $cards = Card::with('board')
-        //     ->orderByDesc('created_at')
-        //     ->where('table_id', $id)
-        //     ->get();
-
-        $cards = Card::with('comment')
+        $cards = Card::with('user', 'comment.user') //requete de la table card en relation avec user et comment avec user
             ->orderByDesc('created_at')
             ->where('table_id', $id)
             ->get();
 
-        $user = Comment::with('user')
+        $user = Comment::with('user') //requete de la table commment en relation avec user
             ->get();
 
-
-
-        // dd($comments);
-        // dd($cards);
-        return view('tasks.task', compact('board', 'cards', 'user_id', 'user'));
+        return view('tasks.task', compact('board', 'cards', 'user_id', 'user', 'boardUser'));
     }
 
     /**

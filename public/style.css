@@ -59,17 +59,14 @@ td {
 .alert {
     margin-top: 2vh;
     background-color: #0e8f82;
-    padding: 20px;
     text-transform: uppercase;
     color: white;
     font-size: 1.5vh;
+    padding: 20px;
 }
 
-.alert {
-    margin-top: 2vh;
+.alert-task {
     background-color: #0e8f82;
-    padding: 5px;
-    margin-bottom: 2vh;
     text-transform: uppercase;
     color: white;
     font-size: 1.5vh;
@@ -211,7 +208,7 @@ td {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 0 5vh 3vh 0;
+    margin-bottom: 3vh;
 }
 
 .board input {
@@ -252,23 +249,19 @@ td {
     overflow-y: scroll;
     background-color: none;
 }
-/*******SCROLLBAR CUSTOM********/
-/* width */
+/***SCROLLBAR CUSTOM***/
 ::-webkit-scrollbar {
     width: 10px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
     background: #f1f1f1;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
     background: #888;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
@@ -436,6 +429,7 @@ details > summary::-webkit-details-marker {
 
 .container-form {
     margin-top: 2vh;
+    margin-bottom: 7vh;
 }
 
 input#remember.form-check-input {
@@ -486,6 +480,7 @@ input#remember.form-check-input {
 .board-title {
     font-size: 3vh;
     text-transform: uppercase;
+    text-decoration: overline;
 }
 
 .div-nonedit-header {
@@ -515,4 +510,39 @@ input#remember.form-check-input {
 .edit-guess button:hover {
     background-color: white;
     color: #f4511e;
+}
+
+.create_user {
+    margin: -20px;
+}
+
+.posted-by {
+    margin: 0;
+}
+
+.btn-home {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-home button {
+    background-color: #f4511e;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    margin: 4px 2px;
+    transition: 0.3s;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 2vh;
+}
+
+.btn-home button:hover {
+    background-color: #0e8f82;
+}
+
+.user_name {
+    font-weight: 900;
+    text-transform: capitalize;
 }

@@ -12,14 +12,15 @@ class CommentController extends Controller
 {
     public function store(Request $request)
     {
-        $user = Auth::user();
-        $user_id = $user->id;
+        $user_id = Auth::user()->id; //récupération de l'id de l'utilisateur connecté
 
         $cards = Card::with('board')
             ->get();
 
         $validated = $request->validate([
             'comment' => 'required|string',
+        ], [
+            'comment.required' => "Oops, you're trying to send an empty comment."
         ]);
 
         $comment = [
@@ -32,7 +33,5 @@ class CommentController extends Controller
 
         return redirect()->back()
             ->with('success', "Your comment has been sent!");
-
-        
     }
 }

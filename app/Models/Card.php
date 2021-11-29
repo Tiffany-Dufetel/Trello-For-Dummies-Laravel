@@ -21,4 +21,9 @@ class Card extends Model
         return $this->hasMany(Comment::class, 'id_card');
         // return $this->belongsToMany(Comment::class);
     }
+
+    public function User()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
