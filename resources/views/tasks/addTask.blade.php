@@ -1,18 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <p><a href="{{ route('overviews.index') }}">< go back</a></p>
-            @if(session()->has('success'))
-                <p>{{ session()->get('success')}}</p>
-            @endif
-            <form action="{{ route('tasks.store', $id) }}" method="POST">
+<h1>add a new task</h2><br>
+    <div class="container-profile-edit">
+        <p><a href="{{ url()->previous() }}">< go back</a></p>
+
+        @if(session()->has('success'))
+            <div class="alert">
+                <p class="alert">{{session()->get('success')}}</p>
+            </div>
+        @endif
+
+        <div class="container-form">
+                <form action="{{ route('tasks.store', $id) }}" method="POST">
                 @csrf
-                <label for="title">Title</label>
-                <input type="text" name="title" id="title" class="form-control
-                @if($errors->has('title')) is-invalid @endif">
+                <label for="title">Title</label><br>
+                <input type="text" name="title" id="title"><br>
 
                 @if($errors->has('title'))
                     <div id="validation" class="invalid-feedback">
@@ -20,9 +23,8 @@
                     </div>
                 @endif
 
-                <label for="content">Description</label>
-                <input type="text" name="content" id="content" class="form-control
-                @if($errors->has('title')) is-invalid @endif">
+                <label for="content">Description</label><br>
+                <textarea name="content" id="content"></textarea><br>
 
                 @if($errors->has('content'))
                     <div id="validation" class="invalid-feedback">
@@ -35,7 +37,4 @@
             </form>
         </div>
     </div>
-
-
-</div>
 @endsection

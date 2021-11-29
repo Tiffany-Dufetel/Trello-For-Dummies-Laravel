@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Card;
+use App\Models\Guess;
 use App\Models\Title;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -25,13 +28,28 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $boards = Title::all();
-        $cards = DB::table('titles')
-            ->join('cards','titles.id',"=",'cards.table_id')
-            ->where('cards.table_id', 50)
-            // // ->select('cards.*','titles.*')
+        $user_id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $email = Auth::user()->email;
+
+        $boards = Title::with('user')
+            ->where([['user_id', $user_id]])
+            ->orderByDesc('created_at')
             ->get();
-        // dd($cards) ;
-        return view('tasks.overview', compact('boards','cards'));
+        // dd($users);
+
+        $boardsGuess = Guess::with('board')
+            ->where('guess', $email)
+            ->get();
+
+        // dd($boardsGuess);
+
+
+        $cards = Card::with('board')
+            ->get();
+
+        return view('tasks.overview', compact('boards', 'cards', 'name', 'user_id', 'boardsGuess'));
     }
+
+    
 }

@@ -1,7 +1,11 @@
 <?php
 
 use App\Http\Controllers\BoardController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\GuessController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,9 +37,22 @@ Route::delete('/tasks/{id}', [TaskController::class, 'destroy'])
 Route::put('/tasks/{id}', [TaskController::class, 'update'])
     ->name('tasks.update');
 
-// Route::get('/tasks/{id}', [TaskController::class, 'edit'])
-//     ->name('tasks.edit');
+Route::post('/comments/{id}', [CommentController::class, 'store'])
+    ->name('comments.store');
+
+Route::get('/profile-edit', [UserController::class, 'index'])
+    ->name('profile-edit.index');
+
+Route::put('/profile-edit', [UserController::class, 'update'])
+    ->name('profile-edit.update');
+
+Route::post('/guesses/{id}', [GuessController::class, 'store'])
+    ->name('guesses.store');
+
+Route::delete('/guesses/{id}', [GuessController::class, 'destroy'])
+    ->name('guesses.destroy');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
+    ->name('home');

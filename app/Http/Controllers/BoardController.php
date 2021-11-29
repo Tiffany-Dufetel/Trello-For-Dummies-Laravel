@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Card;
+use App\Models\Comment;
+use App\Models\Guess;
 use App\Models\Title;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,18 +29,27 @@ class BoardController extends Controller
      */
     public function index()
     {
+        $user_id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $email = Auth::user()->email;
 
-        $boards = Title::all()
-            ->sortByDesc('created_at');
-
-
-        $cards = DB::table('titles')
-            ->join('cards', 'titles.id', "=", 'cards.table_id')
-            ->where('cards.table_id', 50)
-            // // ->select('cards.*','titles.*')
+        $boards = Title::with('user')
+            ->where([['user_id', $user_id]])
+            ->orderByDesc('created_at')
             ->get();
-        // dd($boards->sortBy('created_at'));
-        return view('tasks.overview', compact('boards', 'cards'));
+        // dd($users);
+
+        $boardsGuess = Guess::with('board')
+            ->where('guess', $email)
+            ->get();
+
+        // dd($boardsGuess);
+
+
+        $cards = Card::with('board')
+            ->get();
+
+        return view('tasks.overview', compact('boards', 'cards', 'name', 'user_id', 'boardsGuess'));
     }
 
     /**
@@ -86,14 +97,29 @@ class BoardController extends Controller
     public function show($id)
     {
 
+        $auth = Auth::user();
+        $user_id = $auth->id;
+
         $board = Title::find($id);
-        $cards = DB::table('titles')
-            ->join('cards', 'titles.id', "=", 'cards.table_id')
-            ->where('cards.table_id', $id)
+
+        // $cards = Card::with('board')
+        //     ->orderByDesc('created_at')
+        //     ->where('table_id', $id)
+        //     ->get();
+
+        $cards = Card::with('comment')
+            ->orderByDesc('created_at')
+            ->where('table_id', $id)
             ->get();
 
+        $user = Comment::with('user')
+            ->get();
+
+
+
+        // dd($comments);
         // dd($cards);
-        return view('tasks.task', compact('board', 'cards'));
+        return view('tasks.task', compact('board', 'cards', 'user_id', 'user'));
     }
 
     /**

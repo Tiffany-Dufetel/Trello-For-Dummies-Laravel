@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
-        /**
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -42,7 +42,7 @@ class TaskController extends Controller
 
         Card::create($card);
 
-        return redirect()->back()
+        return redirect()->route('overviews.show', $id)
             ->with('success', "Your card has been create!");
     }
 
@@ -65,10 +65,7 @@ class TaskController extends Controller
 
         $board->save();
 
-        return redirect()->back()
-            ->with('success', 'ok');
-        ;
-
+        return redirect()->back();
     }
 
     public function destroy($id)
@@ -77,6 +74,6 @@ class TaskController extends Controller
         $card->delete();
 
         return redirect()->back()
-            ->with('success', 'votre carte a bien été supprimé');
+            ->with('success', 'Your card has been deleted');
     }
 }

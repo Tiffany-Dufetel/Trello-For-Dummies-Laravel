@@ -1,0 +1,518 @@
+body {
+    margin: 0;
+    font-family: "Outfit", sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+nav {
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    padding: 0 15vh;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    height: 5vh;
+    background-color: white;
+}
+
+table,
+td,
+th {
+    border: 2px solid black;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td {
+    width: 25vh;
+}
+
+.container-form textarea {
+    resize: none;
+    width: 34vh;
+    height: 13vh;
+    border-radius: 5px;
+}
+
+#validation {
+    color: red;
+    font-size: 1.5vh;
+}
+
+.alert {
+    margin-top: 2vh;
+    background-color: #0e8f82;
+    padding: 20px;
+    text-transform: uppercase;
+    color: white;
+    font-size: 1.5vh;
+}
+
+.alert {
+    margin-top: 2vh;
+    background-color: #0e8f82;
+    padding: 5px;
+    margin-bottom: 2vh;
+    text-transform: uppercase;
+    color: white;
+    font-size: 1.5vh;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.logo {
+    width: 100%;
+}
+
+.text-logo {
+    font-size: 30px;
+    text-decoration: overline;
+}
+
+.logged {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.logged p {
+    font-size: 20px;
+}
+
+.login {
+    display: flex;
+}
+
+.login img {
+    margin-left: 5px;
+}
+
+.btn-logout {
+    border: 1px solid black;
+    padding: 0 20px 2px 20px;
+    margin-left: 30px;
+}
+
+.btn-login,
+.btn-register,
+.btn-logout {
+    border: 3px solid black;
+    text-transform: uppercase;
+    font-size: 20px;
+    padding: 5px 35px;
+    margin: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-login:hover,
+.btn-register:hover,
+.btn-logout:hover {
+    border: 3px solid #f4511e;
+}
+
+.welcome h1 {
+    font-size: 8vh;
+    letter-spacing: -2px;
+    font-weight: 900;
+}
+
+.welcome p {
+    font-size: 3vh;
+}
+
+.welcome {
+    margin-top: 15vh;
+    width: 100%;
+    text-align: center;
+}
+
+.welcome button {
+    background-color: #f4511e;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    margin: 4px 2px;
+    transition: 0.3s;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 2vh;
+}
+
+.welcome button:hover {
+    background-color: #0e8f82;
+}
+
+/* BOARDS */
+.input-new-board {
+    text-align: center;
+    font-size: 2.5vh;
+}
+
+.input-new-board input {
+    margin-top: 1vh;
+    font-size: 1.5vh;
+    width: 30vh;
+    height: 0 2vh;
+    padding: 1vh 2vh;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.input-new-board button {
+    background-color: #f4511e;
+    border: none;
+    color: white;
+    padding: 9px 32px;
+    text-align: center;
+    margin: 4px 2px;
+    transition: 0.3s;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 1.8vh;
+}
+
+.input-new-board button:hover {
+    background-color: #0e8f82;
+}
+
+.board {
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 25vh;
+    height: 45vh;
+    margin: 3vh;
+    font-size: 2vh;
+    padding: 2vh;
+}
+
+.container-boards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 5vh 3vh 0;
+}
+
+.board input {
+    border: none;
+    height: 5vh;
+    font-size: 2.2vh;
+    width: 24.2vh;
+    text-transform: uppercase;
+    font-family: "Outfit", sans-serif;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.buttons button {
+    background-color: #f4511e;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    margin: 1vh;
+    transition: 0.3s;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 1.7vh;
+}
+
+.buttons button:hover {
+    background-color: #0e8f82;
+}
+
+.task {
+    border-radius: 5px;
+    height: 28vh;
+    width: 27vh;
+    overflow-y: scroll;
+    background-color: none;
+}
+/*******SCROLLBAR CUSTOM********/
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/***SINGLE TASK**/
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.container-card {
+    text-align: center;
+    margin: 5vh;
+}
+
+.btn-edit button {
+    visibility: hidden;
+}
+
+.btn-edit input {
+    border: none;
+    font-size: 2vh;
+    text-align: center;
+    width: 34vh;
+    font-family: "Outfit", sans-serif;
+}
+
+.btn-nonedit {
+    display: flex;
+    justify-content: space-between;
+    padding: 2vh 8vh;
+    height: 10vh;
+}
+
+.nonedit-card-content {
+    font-size: 2vh;
+    margin: 0;
+    font-weight: 500;
+}
+
+.title-nonedit {
+    font-size: 2vh;
+    text-transform: uppercase;
+    margin: 1.5vh;
+}
+
+.card {
+    border: 1px solid black;
+    margin: 1vh;
+    padding-bottom: 2vh;
+    width: 70vh;
+}
+
+.container-title-content {
+    display: flex;
+    justify-content: center;
+    height: 5vh;
+    padding: 2vh;
+}
+
+.container-card hr {
+    width: 50vh;
+    height: 1px;
+}
+
+.btn-delete {
+    margin-bottom: 5vh;
+}
+
+.btn-delete button,
+.container-card button,
+.container-profile-edit button {
+    background-color: #f4511e;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    margin: 1vh;
+    transition: 0.3s;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 1.7vh;
+}
+
+.btn-delete button:hover,
+.container-card button:hover,
+.container-profile-edit button:hover {
+    background-color: #0e8f82;
+}
+
+.container-card h1 {
+    text-transform: uppercase;
+    font-size: 6vh;
+    text-decoration: overline;
+    margin: 3vh 0 1vh 0;
+}
+
+h1 {
+    text-transform: uppercase;
+    font-size: 6vh;
+    text-decoration: overline;
+    margin: 3vh 0 1vh 0;
+    text-align: center;
+}
+
+.card-border {
+    padding: 0 20px;
+    margin: 2vh 0.5vh;
+    width: 20vh;
+    -webkit-box-shadow: 1px 3px 4px -1px rgba(0, 0, 0, 0.21);
+    box-shadow: 1px 3px 4px -1px rgba(0, 0, 0, 0.21);
+    border-radius: 5px;
+}
+
+.created_by {
+    font-size: 13px;
+    margin: 0;
+    text-align: end;
+}
+
+details > summary {
+    list-style: none;
+}
+details > summary::-webkit-details-marker {
+    display: none;
+}
+
+.comment-name {
+    margin: 1vh 0 0 0;
+}
+
+.comment-content {
+    margin: 0 0 1vh 0;
+    font-size: 2vh;
+}
+
+.comment {
+    height: 12vh;
+    overflow-y: scroll;
+}
+
+.comment p:nth-child(odd) {
+    background-color: #e9e9e9;
+}
+
+.container-profile-edit {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 2vh;
+    text-align: center;
+    font-size: 2vh;
+}
+
+.container-profile-edit input {
+    font-size: 1.8vh;
+    width: 30vh;
+    height: 0 2vh;
+    padding: 1vh 2vh;
+    border-radius: 5px;
+    border: 1px solid black;
+    font-family: "Outfit", sans-serif;
+}
+
+.container-form {
+    margin-top: 2vh;
+}
+
+input#remember.form-check-input {
+    width: 13px;
+}
+
+.card-content textarea {
+    resize: none;
+    width: 34vh;
+    height: 7vh;
+    font-family: "Outfit", sans-serif;
+    font-size: 2vh;
+    border: none;
+    margin-left: 5px;
+    text-align: center;
+}
+
+.guess input,
+.comments input {
+    font-size: 1.5vh;
+    width: 30vh;
+    height: 0 2vh;
+    padding: 1vh 2vh;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin-bottom: 2vh;
+}
+
+.guess button,
+.comments button {
+    padding: 7px 32px;
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+}
+
+.guess button:hover,
+.comments button:hover {
+    border: 2px solid #0e8f82;
+    background-color: white;
+}
+
+.boards-title {
+    text-align: center;
+    margin-top: 5vh;
+}
+
+.board-title {
+    font-size: 3vh;
+    text-transform: uppercase;
+}
+
+.div-nonedit-header {
+    background-color: #0e8f82;
+    font-size: 2.5vh;
+    height: 6vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    color: white;
+}
+
+.edit-guess table {
+    margin-right: auto;
+    margin-left: auto;
+    margin: 0 auto 2vh auto;
+}
+
+.edit-guess button {
+    background-color: white;
+    color: black;
+    padding: 0;
+}
+
+.edit-guess button:hover {
+    background-color: white;
+    color: #f4511e;
+}

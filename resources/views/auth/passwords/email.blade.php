@@ -1,20 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+<h1>add a new task</h2><br>
+    <div class="container-profile-edit">
+        <p><a href="{{ url()->previous() }}">< go back</a></p>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+        @if(session()->has('success'))
+            <div class="alert">
+                <p class="alert">{{session()->get('success')}}</p>
+            </div>
+        @endif
 
-                    <form method="POST" action="{{ route('password.email') }}">
+        <div class="container-form">
+                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -39,9 +37,7 @@
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
+
         </div>
     </div>
-</div>
 @endsection
