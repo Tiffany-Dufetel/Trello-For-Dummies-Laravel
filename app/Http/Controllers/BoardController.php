@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 class BoardController extends Controller
 {
     /**
-     * Create a new controller instance.
+ * Create a new controller instance.
      *
      * @return void
      */
@@ -34,7 +34,7 @@ class BoardController extends Controller
         $name = Auth::user()->name; //récupération du nom de l'utilisateur connecté
         $email = Auth::user()->email; //récupération du mail de l'utilisateur connecté
 
-        $boards = Title::with('user') // requete de la table title et user en relation
+        $boards = Title::with('card', 'user') // requete de la table title et user en relation
             ->where('user_id', $user_id)
             ->orderByDesc('created_at')
             ->get();
@@ -43,11 +43,7 @@ class BoardController extends Controller
             ->where('guess', $email)
             ->get();
 
-        $cards = Card::with('board') //requete de la table card en relation avec la table title
-            // ->where('table_id',)
-            ->get();
-
-        return view('tasks.overview', compact('boards', 'cards', 'name', 'user_id', 'boardsGuess'));
+        return view('tasks.overview', compact('boards', 'name', 'user_id', 'boardsGuess'));
     }
 
     /**

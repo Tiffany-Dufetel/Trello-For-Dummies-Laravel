@@ -14,9 +14,6 @@ class CommentController extends Controller
     {
         $user_id = Auth::user()->id; //récupération de l'id de l'utilisateur connecté
 
-        $cards = Card::with('board')
-            ->get();
-
         $validated = $request->validate([
             'comment' => 'required|string',
         ], [

@@ -42,7 +42,7 @@ class UserController extends Controller
             'password' => 'required|min:8',
         ]);
 
-        $auth = Auth::user()->id; //récupération de l'id de l'utilisateur connecté
+        $auth = Auth::user()->id; //récupération de l'id de l'utilisateur
 
         $board = User::find($auth);
         $board->name = $request->name;

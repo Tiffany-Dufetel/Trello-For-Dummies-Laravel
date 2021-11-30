@@ -83,7 +83,6 @@
 
     {{-- div qui contient les tableaux propriétaire --}}
     <div class="container-boards">
-
         @if (count($boards)>0)
             {{-- boucle pour afficher les tableaux propriétaire --}}
             @foreach ($boards as $board)
@@ -99,18 +98,11 @@
                         @else
                         <p class="title-nonedit">{{ $board->title }}</p>
                     @endif
-                    {{-- div contenant les cartes --}}
+                     {{-- div contenant les cartes --}}
                     <div class="task">
-                            {{-- requete pour recupérer les bonnes cartes --}}
-                            @php
-                                $cards = DB::table('titles')
-                                    ->join('cards','titles.id',"=",'cards.table_id')
-                                    ->where('cards.table_id', $board->id)
-                                    ->get();
-                            @endphp
                         <a href="{{route('overviews.show', $board->id)}}">
                             {{-- boucle pour afficher les cartes --}}
-                            @foreach ($cards as $card)
+                            @foreach ($board->card as $card)
                                 <div class="card-border">
                                     <p>
                                         {{ $card->card_title }}<br>

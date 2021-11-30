@@ -18,7 +18,7 @@ class Title extends Model
 
     public function card()
     {
-        return $this->hasMany(Card::class);
+        return $this->hasMany(Card::class, 'table_id');
     }
 
     public function guess()

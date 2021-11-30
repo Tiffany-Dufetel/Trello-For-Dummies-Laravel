@@ -32,7 +32,7 @@ class HomeController extends Controller
         $name = Auth::user()->name; //récupération du nom de l'utilisateur connecté
         $email = Auth::user()->email; //récupération du mail de l'utilisateur connecté
 
-        $boards = Title::with('user') // requete de la table title et user en relation
+        $boards = Title::with('user.card') // requete de la table title et user en relation
             ->where('user_id', $user_id)
             ->orderByDesc('created_at')
             ->get();

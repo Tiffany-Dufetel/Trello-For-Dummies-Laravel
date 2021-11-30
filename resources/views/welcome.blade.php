@@ -33,7 +33,7 @@
                             <b>After TFD</b>: Everything’s organized in one place, you’re on top of
                             <br>things, progress is clear, and a sense of calm sets in.
                         </p>
-                        <a href="{{ route('login') }}"><button>give TFD a try</button></a>
+                        <a href="{{ route('register') }}"><button>give TFD a try</button></a>
                 </div>
             @endempty
         </div>

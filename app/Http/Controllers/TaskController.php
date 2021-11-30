@@ -55,7 +55,7 @@ class TaskController extends Controller
     {
         $user_id = Auth::user()->id;
 
-        $board = Card::find($id);
+        $board = Card::findOrFail($id);
         $board->card_title = $request->edit_card_title;
         $board->content = $request->edit_content;
 
