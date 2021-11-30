@@ -50,7 +50,7 @@
                             @endif
                         @else
                             <div class="login">
-                                <p>Hello, {{ Auth::user()->name }}!
+                                <p>Hello, <span class="user_name">{{ Auth::user()->name }}</span>!
                                     <a href="{{ route('profile-edit.index') }}">
                                         <img src="{{asset('pen.png')}}" width="15px">
                                     </a>

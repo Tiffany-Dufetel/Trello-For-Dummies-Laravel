@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 {{-- div qui contient toute la page --}}
     <div class="container-card">
 
@@ -35,7 +36,7 @@
                 @endif
             {{-- affichage alerte success --}}
             @if(session()->has('success'))
-                <div class="alert">
+                <div>
                     <p class="alert-task">{{session()->get('success')}}</p>
                 </div>
             @endif
@@ -47,7 +48,7 @@
                     <div class="card">
                         {{-- div des conditions contenant le titre et description de la carte --}}
                         <div class="btn-edit">
-                            <p class="posted-by">card posted by <b>{{$card->user->name}}</b></p>
+                            <p class="posted-by">card posted by <span class="user_name"><b>{{$card->user->name}}</b></span></p>
 
                             {{-- condition si propriétaire du tableau --}}
                             @if ($user_id == $card->user_id)
@@ -57,12 +58,12 @@
                                     @csrf
                                     <div class="container-title-content">
                                         <div class="card-title">
-                                            <label for="edit_card_title">title</label><br>
-                                            <input type="text" name="edit_card_title" id="edit_card_title" value="{{$card->card_title}}"><br><br>
+                                            <label for="edit_card_title"><u>title</u></label><br>
+                                                <span id="hide"></span><input id="txt" type="text" name="edit_card_title" value="{{$card->card_title}}">
                                         </div>
                                         <div class="card-content">
-                                            <label for="edit-content">description</label><br>
-                                            <textarea name="edit_content" id="edit">{{$card->content}}</textarea>
+                                            <label for="edit-content"><u>description</u></label><br>
+                                            <textarea name="edit_content" id="autoresizing">{{$card->content}}</textarea>
                                         </div>
                                     </div>
                                     <button type="submit"></button>
@@ -73,11 +74,11 @@
                                 {{-- div non propriétaire --}}
                                 <div class="btn-nonedit">
                                     <div class="card-title-nonedit">
-                                        title<br>
+                                        <u>title</u><br>
                                         <p class="nonedit-card-content">{{$card->card_title}}</p>
                                     </div>
                                     <div class="card-content-nonedit">
-                                        description<br>
+                                        <u>description</u><br>
                                         <p class="nonedit-card-content">{{$card->content}}</p>
                                     </div>
                                 </div>
@@ -126,5 +127,23 @@
                 @endforeach
             </div>
     </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script>
+        //fonction autosize input dans 'task'
+        $(function() {
+        $('#hide').text($('#txt').val());
+        $('#txt').width($('#hide').width());
+        }).on('input', function() {
+        $('#hide').text($('#txt').val());
+        $('#txt').width($('#hide').width());
+        });
+    </script>
+
+
+
+
 
 @endsection

@@ -7,7 +7,7 @@
             <h1>Edit your profile</h2><br>
             {{-- affichage alerte --}}
             @if(session()->has('success'))
-                <div class="alert">
+                <div>
                     <p class="alert">{{session()->get('success')}}</p>
                 </div>
             @endif
@@ -47,39 +47,41 @@
 
         {{-- div pour gerer les invités --}}
         <div class="edit-guess">
+            @if(count($boardsGuess)>0)
             <h1>Edit your guesses</h1><br>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Email</th>
-                            <th>Board title</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{-- boucle pour récuperer les invités et les tableaux associés --}}
-                        @foreach ($boardsGuess as $boardGuess)
+                    <table>
+                        <thead>
                             <tr>
-                                <td>
-                                    {{$boardGuess->guess}}
-                                </td>
-                                <td>
-                                    <a href="{{route('overviews.show', $boardGuess->board->id)}}">
-                                        {{$boardGuess->board->title}}
-                                    </a>
-                                </td>
-                                <td>
-                                    {{-- bouton de suppression --}}
-                                    <form action="{{route('guesses.destroy', $boardGuess->id)}}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button>x</button>
-                                    </form>
-                                </td>
+                                <th>Email</th>
+                                <th>Board title</th>
+                                <th>Delete</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {{-- boucle pour récuperer les invités et les tableaux associés --}}
+                            @foreach ($boardsGuess as $boardGuess)
+                                <tr>
+                                    <td>
+                                        {{$boardGuess->guess}}
+                                    </td>
+                                    <td>
+                                        <a href="{{route('overviews.show', $boardGuess->board->id)}}">
+                                            {{$boardGuess->board->title}}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {{-- bouton de suppression --}}
+                                        <form action="{{route('guesses.destroy', $boardGuess->id)}}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button>x</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                @endif
         </div>
     </div>
 @endsection

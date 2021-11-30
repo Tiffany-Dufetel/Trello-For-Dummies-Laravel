@@ -44,6 +44,7 @@ class BoardController extends Controller
             ->get();
 
         $cards = Card::with('board') //requete de la table card en relation avec la table title
+            // ->where('table_id',)
             ->get();
 
         return view('tasks.overview', compact('boards', 'cards', 'name', 'user_id', 'boardsGuess'));
