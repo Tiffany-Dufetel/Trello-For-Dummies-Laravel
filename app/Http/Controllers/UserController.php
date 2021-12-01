@@ -10,20 +10,9 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
         $user_id = Auth::user()->id; //récupération de l'id de l'utilisateur connecté
-        $email = Auth::user()->email; //récupération du mail de l'utilisateur connecté
 
         $user = User::find($user_id);
 

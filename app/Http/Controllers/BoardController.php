@@ -14,16 +14,6 @@ use Illuminate\Support\Facades\DB;
 class BoardController extends Controller
 {
     /**
- * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -129,8 +119,7 @@ class BoardController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = Auth::user();
-        $user_id = $user->id;
+        $user_id = Auth::user()->id;
 
         $board = Title::find($id);
         $board->title = $request->custom_title;
