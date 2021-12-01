@@ -89,7 +89,7 @@ class BoardController extends Controller
             ->where('id', $id)
             ->get();
 
-         $cards = Card::with('user', 'comment.user') //requete de la table card en relation avec user et comment avec user
+        $cards = Card::with('user', 'comment.user') //requete de la table card en relation avec user et comment avec user
             ->orderByDesc('created_at')
             ->where('table_id', $id)
             ->get();
@@ -97,7 +97,7 @@ class BoardController extends Controller
         $user = Comment::with('user') //requete de la table commment en relation avec user
             ->get();
 
-        return view('tasks.task', compact('board', 'cards', 'user_id', 'user', 'boardUser'));
+        return view('tasks.task', compact('board', 'cards', 'user_id', 'boardUser'));
     }
 
     /**
