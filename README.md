@@ -1,4 +1,4 @@
-    DATE DE CREATION : 30 novembre 2021
+    <u> DATE DE CREATION : 30 novembre 2021</u>
  
  • Développement d'un site Web (plateforme) pour s'organiser dans le travail ou pour créer une plateforme d'échange organisée entre 2 parties, en se servant de "tableaux" et de "tickets" (tâches) associés aux tableaux.
  
