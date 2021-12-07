@@ -5,3 +5,5 @@
  • Techno: HTML/CSS, Laravel, base de donnée Laragon
  
  • Connexion/deconnexion, édition du profil utilisateur, affichage des tableaux crées par l'utilisateur connecté, ajout/renommer/suppression de tâches, partage des tableaux avec d'autres utilisateurs.
+
+

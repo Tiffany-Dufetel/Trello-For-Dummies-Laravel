@@ -48,7 +48,7 @@
         {{-- div pour gerer les invités --}}
         <div class="edit-guess">
             @if(count($boardsGuess)>0)
-            <h1>Edit your guesses</h1><br>
+            <h1>Edit your guests</h1><br>
                     <table>
                         <thead>
                             <tr>
